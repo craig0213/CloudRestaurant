@@ -13,14 +13,14 @@ steps:
     settings:
       username: ${DRONE_DOCKER_USERNAME}
       password: ${DRONE_DOCKER_PASSWORD}
-      repo: LoginTest/TestDrone
+      repo: craig0213/test-drone
       tags: latest
 
   - name: publish
     image: plugins/gcr
     settings:
       registry: asia.gcr.io
-      repo: LoginTest/TestDrone
+      repo: craig0213/test-drone
       tags: latest
       json_key: >
          {
