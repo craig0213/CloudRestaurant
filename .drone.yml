@@ -5,7 +5,8 @@ steps:
   - name: test
     image: golang:alpine
     commands: 
-     - echo DRONE_DOCKER_USERNAME, DRONE_PROJECT_ID
+     - echo  from_secret: DRONE_DOCKER_USERNAME, 
+     - echo  from_secret: DRONE_PROJECT_ID
     when:
       branch:
         - master
@@ -13,8 +14,10 @@ steps:
   - name: docker
     image: plugins/docker
     settings:
-      username: ${DRONE_DOCKER_USERNAME}
-      password: ${DRONE_DOCKER_PASSWORD}
+      username: 
+        from_secret: DRONE_DOCKER_USERNAME
+      password: 
+        from_secret: DRONE_DOCKER_PASSWORD
       repo: craig0213/test-drone
       debug: true
 
