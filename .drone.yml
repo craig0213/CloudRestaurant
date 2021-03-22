@@ -4,9 +4,6 @@ name: test
 steps:
   - name: test
     image: golang:alpine
-    commands: 
-     - echo  from_secret: DRONE_DOCKER_USERNAME, 
-     - echo  from_secret: DRONE_PROJECT_ID
     when:
       branch:
         - master
