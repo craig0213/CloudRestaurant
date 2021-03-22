@@ -22,6 +22,6 @@ steps:
     image: plugins/gcr
     settings:
       registry: asia.gcr.io
-      repo: LoginTest/test-drone
+      repo: skilled-nation-208012/test-drone
       json_key: 
         from_secret: DRONE_GCR_JSON_KEY
