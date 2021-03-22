@@ -25,4 +25,5 @@ func main() {
 
 func registerRouter(r *gin.Engine) {
 	new(controller.HelloController).Router(r)
+
 }
