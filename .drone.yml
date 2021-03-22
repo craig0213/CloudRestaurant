@@ -4,6 +4,7 @@ name: test
 steps:
   - name: test
     image: golang:alpine
+    commands: echo ${DRONE_DOCKER_USERNAME}, ${DRONE_PROJECT_ID}
     when:
       branch:
         - master
@@ -13,15 +14,14 @@ steps:
     settings:
       username: ${DRONE_DOCKER_USERNAME}
       password: ${DRONE_DOCKER_PASSWORD}
-      repo: registry.hub.docker.com/repository/docker/craig0213/test-drone
-      tags: latest
+      repo: craig0213/test-drone
+      debug: true
 
   - name: publish
     image: plugins/gcr
     settings:
       registry: asia.gcr.io
-      repo: registry.hub.docker.com/repository/docker/craig0213/test-drone
-      tags: latest
+      repo: craig0213/test-drone
       json_key: >
          {
             "type": "service_account",
