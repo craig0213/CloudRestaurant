@@ -5,7 +5,7 @@ steps:
   - name: test
     image: golang:alpine
     commands: 
-     - echo ${DRONE_DOCKER_USERNAME}, ${DRONE_PROJECT_ID}
+     - echo $DRONE_DOCKER_USERNAME, $DRONE_PROJECT_ID
     when:
       branch:
         - master
