@@ -1,0 +1,37 @@
+kind: pipeline
+name: test
+
+steps:
+  - name: test
+    image: golang:alpine
+    when:
+      branch:
+        - master
+
+  - name: docker
+    image: plugins/docker
+    settings:
+      username: ${DRONE_DOCKER_USERNAME}
+      password: ${DRONE_DOCKER_PASSWORD}
+      repo: LoginTest/TestDrone
+      tags: latest
+
+  - name: publish
+    image: plugins/gcr
+    settings:
+      registry: asia.gcr.io
+      repo: LoginTest/TestDrone
+      tags: latest
+      json_key: >
+         {
+            "type": "service_account",
+            "project_id": ${DRONE_PROJECT_ID},
+            "private_key_id": ${DRONE_PRIVATE_KEY_ID},
+            "private_key": ${DRONE_PRIVATE_KEY},
+            "client_email": ${DRONE_CLIENT_EMAIL},
+            "client_id": ${DRONE_CLIENT_ID},
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+            "client_x509_cert_url": ${DRONE_CLIENT_X509}
+          }
