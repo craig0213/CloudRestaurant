@@ -14,5 +14,6 @@ func (hello *HelloController) Router(e *gin.Engine) {
 func (hello *HelloController) Hello(c *gin.Context) {
 	c.JSON(200, map[string]interface{}{
 		"message": "hello cloudrestaurant",
+		"context": "test",
 	})
 }
